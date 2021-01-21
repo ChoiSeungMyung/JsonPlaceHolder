@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="bindPostViewModel"
+            type="com.victorizzie.android.apps.jsonplaceholder.viewmodel.PostDetailViewModel" />
+        <variable
+            name="bindCommentViewModel"
+            type="com.victorizzie.android.apps.jsonplaceholder.viewmodel.CommentViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/act_post_detail_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/act_post_detail_app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/act_post_detail_tool_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:id="@+id/act_post_detail_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:src="@drawable/ic_back"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <Button
+                        android:id="@+id/act_post_detail_delete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/margin"
+                        android:text="@string/delete"
+                        android:textAllCaps="false"
+                        bind:deleteClick="@{bindPostViewModel}"
+                        bind:id="@{bindPostViewModel.post.id}"
+                        app:layout_constraintEnd_toStartOf="@id/act_post_detail_modify"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/act_post_detail_modify"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/modify"
+                        android:textAllCaps="false"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <TextView
+            android:id="@+id/act_post_detail_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding"
+            android:layout_marginTop="@dimen/padding"
+            android:text="@{bindPostViewModel.post.title}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/act_post_detail_app_bar"
+            tools:text="title" />
+
+        <TextView
+            android:id="@+id/act_post_detail_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding3"
+            android:padding="@dimen/padding"
+            android:text="@{bindPostViewModel.post.body}"
+            app:layout_constraintStart_toStartOf="@id/act_post_detail_title"
+            app:layout_constraintTop_toBottomOf="@id/act_post_detail_title" />
+
+        <TextView
+            android:id="@+id/act_post_detail_comment_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding3"
+            android:text="@string/comment_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/title"
+            app:layout_constraintStart_toStartOf="@id/act_post_detail_title"
+            app:layout_constraintTop_toBottomOf="@id/act_post_detail_body" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/act_post_detail_comment_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/padding"
+            android:padding="@dimen/padding"
+            app:commentList="@{bindCommentViewModel.commentList}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/act_post_detail_comment_title" />
+
+        <ProgressBar
+            android:id="@+id/act_post_detail_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{bindCommentViewModel.dataLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/act_post_detail_comment_recycler_view"
+            app:layout_constraintEnd_toEndOf="@id/act_post_detail_comment_recycler_view"
+            app:layout_constraintStart_toStartOf="@id/act_post_detail_comment_recycler_view"
+            app:layout_constraintTop_toTopOf="@id/act_post_detail_comment_recycler_view" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

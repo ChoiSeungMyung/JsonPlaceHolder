@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">JsonPlaceHolder</string>
+    <string name="toast_check_network">인터넷 연결 상태를 확인해주세요</string>
+    <string name="toast_success_delete">아이템을 삭제 했습니다</string>
+    <string name="toast_success_modify">아이템을 수정 했습니다</string>
+
+    <string name="toast_error_delete">삭제하는데 실패했습니다</string>
+    <string name="toast_error_get_list">목록을 불러오는데 실패했습니다</string>
+    <string name="toast_error_get_post">아이템을 가져오는데 실패했습니다</string>
+    <string name="toast_error_get_comment">코멘트를 가져오는데 실패했습니다</string>
+    <string name="toast_error_modify_post">수정하는데 실패했습니다</string>
+
+    <string name="comment_title">Comments</string>
+
+    <string name="title">Title</string>
+    <string name="body">Body</string>
+    <string name="modify">Modify</string>
+    <string name="delete">Delete</string>
+</resources>
