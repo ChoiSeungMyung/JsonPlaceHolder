@@ -4,7 +4,7 @@
 PostListActivity, PostDetailActivity와 PostModifyActivity로 구분 되어있습니다.<br>
 각각의 뷰모델을 이용해 데이터를 불러오거나 갱신합니다.<br>
 Coroutine을 이용해 비동기처리를 구현합니다.<br>
-fake api이기 때문에 로컬에서의 수정 내역이 반영되지 않아 목록을 caching 해 이용합니다.<br>
+fake api이기 때문에 로컬에서의 수정 내역이 서버에 반영되지 않아 목록을 caching 해 이용합니다.<br>
 수정된 아이템의 경우 Detail로 재진입시 서버와 동기화 시킵니다.<br>
 
 - get posts : @GET https://jsonplaceholder.typicode.com/posts
