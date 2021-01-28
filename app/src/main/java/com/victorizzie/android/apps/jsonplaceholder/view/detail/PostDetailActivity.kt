@@ -2,10 +2,10 @@ package com.victorizzie.android.apps.jsonplaceholder.view.detail
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.victorizzie.android.apps.jsonplaceholder.BuildConfig
 import com.victorizzie.android.apps.jsonplaceholder.R
 import com.victorizzie.android.apps.jsonplaceholder.databinding.ActPostDetailBinding
@@ -21,12 +21,12 @@ import kotlinx.coroutines.*
 @ObsoleteCoroutinesApi
 class PostDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActPostDetailBinding
-    private val commentViewModel by lazy {
-        ViewModelProvider(this, CommentViewModelFactory()).get(CommentViewModel::class.java)
+    private val commentViewModel: CommentViewModel by viewModels {
+        CommentViewModelFactory()
     }
 
-    private val postDetailViewModel by lazy {
-        ViewModelProvider(this, PostDetailViewModelFactory()).get(PostDetailViewModel::class.java)
+    private val postDetailViewModel: PostDetailViewModel by viewModels {
+        PostDetailViewModelFactory()
     }
 
     private val commentAdapter = CommentAdapter()

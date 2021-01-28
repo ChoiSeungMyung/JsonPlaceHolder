@@ -2,10 +2,10 @@ package com.victorizzie.android.apps.jsonplaceholder.view.list
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.victorizzie.android.apps.jsonplaceholder.BuildConfig
 import com.victorizzie.android.apps.jsonplaceholder.R
@@ -21,8 +21,8 @@ import kotlinx.coroutines.ObsoleteCoroutinesApi
 class PostListActivity : AppCompatActivity() {
     private lateinit var binding: ActPostListBinding
 
-    private val postListViewModel by lazy {
-        ViewModelProvider(this, PostListViewModelFactory()).get(PostListViewModel::class.java)
+    private val postListViewModel: PostListViewModel by viewModels {
+        PostListViewModelFactory()
     }
 
     private val postsAdapter =
@@ -40,6 +40,7 @@ class PostListActivity : AppCompatActivity() {
             this,
             R.layout.act_post_list
         )
+
         setBinding()
         setObserver()
     }
